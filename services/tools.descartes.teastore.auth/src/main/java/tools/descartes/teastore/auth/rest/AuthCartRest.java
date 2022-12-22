@@ -121,8 +121,9 @@ public class AuthCartRest {
    */
   @PUT
   @Path("{pid}")
-  public Response updateQuantity(SessionBlob blob, @PathParam("pid") final Long pid,
-      @QueryParam("quantity") int quantity) {
+  public Response updateQuantity(SessionBlob blob,
+                                 @PathParam("pid") final Long pid,
+                                 @QueryParam("quantity") int quantity) {
     for (OrderItem item : blob.getOrderItems()) {
       if (item.getProductId() == pid) {
         item.setQuantity(quantity);

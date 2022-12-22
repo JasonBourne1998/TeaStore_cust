@@ -57,10 +57,10 @@ public class PersistenceUser extends User {
 		EntityManager em = UserRepository.REPOSITORY.getEMF().createEntityManager();
 		try {
 			em.getTransaction().begin();
-			em.createQuery("DELETE FROM PersistenceOrderItem oi WHERE oi.order.user = :user")
-			.setParameter("user", this).executeUpdate();
-			em.createQuery("DELETE FROM PersistenceOrder o WHERE o.user = :user")
-			.setParameter("user", this).executeUpdate();
+			em.createQuery("DELETE FROM PersistenceOrderItem oi WHERE oi.order.user.userName = :userName")
+			.setParameter("userName", this.getUserName()).executeUpdate();
+			em.createQuery("DELETE FROM PersistenceOrder o WHERE o.user.userName = :userName")
+			.setParameter("userName", this.getUserName()).executeUpdate();
 			em.getTransaction().commit();
 		} finally {
 	        em.close();
